@@ -1,25 +1,24 @@
-package com.uoc.ggymbackend.domain;
+package com.uoc.ggymbackend.domain.vo;
 
-import lombok.Data;
+import com.uoc.ggymbackend.domain.Abonado;
+import com.uoc.ggymbackend.domain.Usuario;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Data
-@Entity
-public class CentroDeportivo {
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class CentroDeportivoVO {
 
-    @Id
-    @GeneratedValue
     private Long idCentro;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "idUsuario")
     private Usuario gestor;
 
-    @NotBlank
     private String nombreCentro;
 
     @NotBlank
@@ -49,7 +48,6 @@ public class CentroDeportivo {
     @NotBlank
     private String emailContacto;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
     private List<Abonado> abonados;
 
 }
