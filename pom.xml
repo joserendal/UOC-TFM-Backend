@@ -12,7 +12,7 @@
 	<artifactId>ggym-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ggym-backend</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Backend for GGym Application</description>
 
 	<properties>
 		<java.version>1.8</java.version>
