@@ -1,8 +1,10 @@
 package com.uoc.ggymbackend.domain.vo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,7 +17,7 @@ public class CuotaAbonadoVO {
 
     private Long idCuotaAbonado;
 
-    private AbonadoVO abonado;
+    private Long idAbonado;
 
     @NotNull
     @Min(0)

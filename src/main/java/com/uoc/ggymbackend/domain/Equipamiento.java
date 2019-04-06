@@ -19,6 +19,9 @@ public class Equipamiento {
 
     private String descripcionEquipamiento;
 
+    @ManyToOne
+    private Equipamiento equipamiento;
+
     @OneToMany(cascade = CascadeType.REMOVE)
     private List<Reserva> reservas;
 }

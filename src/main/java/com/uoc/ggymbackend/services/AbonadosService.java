@@ -1,6 +1,7 @@
 package com.uoc.ggymbackend.services;
 
 import com.uoc.ggymbackend.domain.Abonado;
+import com.uoc.ggymbackend.domain.CentroDeportivo;
 import com.uoc.ggymbackend.domain.vo.AbonadoVO;
 import com.uoc.ggymbackend.domain.vo.CentroDeportivoVO;
 import com.uoc.ggymbackend.repositories.AbonadosRepository;
@@ -27,6 +28,10 @@ public class AbonadosService {
     public AbonadoVO crearAbonado(AbonadoVO abonadoVO) {
         // Mapear a entidad
         Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
+        // Obtener los datos del centro deportivo
+        CentroDeportivoVO centroVO = centrosService.obtenerCentro(abonadoVO.getIdCentroDeportivo());
+        CentroDeportivo centro = modelMapper.map(centroVO, CentroDeportivo.class);
+        abonado.setCentroDeportivo(centro);
         // Guardar en la base de datos
         abonado = abonadosRepository.save(abonado);
         // Mapear a VO y devolver

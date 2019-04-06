@@ -30,8 +30,8 @@ public class EquipamientoController {
     }
 
     @PostMapping(value = "/equipamiento/reservar/", produces = "application/json", consumes = "application/json")
-    public EquipamientoVO reservarEquipamiento(@RequestBody @Valid ReservaVO reservaVO) {
-        return equipamientosService.reservarEquipamiento(reservaVO);
+    public void reservarEquipamiento(@RequestBody @Valid ReservaVO reservaVO) {
+        equipamientosService.reservarEquipamiento(reservaVO);
     }
 
 

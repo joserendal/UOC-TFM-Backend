@@ -17,6 +17,8 @@ public class EquipamientoVO {
 
     private Long idEquipamiento;
 
+    private Long idCentroDeportivo;
+
     @NotBlank
     private String nombreEquipamiento;
 

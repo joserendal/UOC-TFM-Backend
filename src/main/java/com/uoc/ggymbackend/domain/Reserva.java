@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,4 +23,7 @@ public class Reserva {
     private LocalDateTime reservaDesde;
 
     private LocalDateTime reservaHasta;
+
+    @ManyToOne
+    private Equipamiento equipamiento;
 }

@@ -1,7 +1,6 @@
 package com.uoc.ggymbackend.domain;
 
 import lombok.Data;
-import lombok.Generated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -18,7 +17,7 @@ public class PagosAbonado {
 
     @OneToOne
     @JoinColumn(name = "idAbonado")
-    private Abonado abonado;
+    private Abonado idAbonado;
 
     @NotNull
     @Min(1)
@@ -27,5 +26,5 @@ public class PagosAbonado {
 
     @NotNull
     @Min(0)
-    private Long año;
+    private int anio;
 }

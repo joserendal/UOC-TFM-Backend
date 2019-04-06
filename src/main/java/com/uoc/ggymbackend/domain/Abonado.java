@@ -2,7 +2,10 @@ package com.uoc.ggymbackend.domain;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 @Data
@@ -35,5 +38,8 @@ public class Abonado {
     private String numeroTelefono;
 
     private String rutaImagen;
+
+    @ManyToOne
+    private CentroDeportivo centroDeportivo;
 
 }

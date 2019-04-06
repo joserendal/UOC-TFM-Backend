@@ -1,10 +1,10 @@
 package com.uoc.ggymbackend.domain.vo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 
@@ -15,6 +15,8 @@ import javax.validation.constraints.NotBlank;
 public class AbonadoVO {
 
     private Long idAbonado;
+
+    private Long idCentroDeportivo;
 
     @NotBlank
     private String nombre;
@@ -38,5 +40,4 @@ public class AbonadoVO {
     private String numeroTelefono;
 
     private String rutaImagen;
-
 }
