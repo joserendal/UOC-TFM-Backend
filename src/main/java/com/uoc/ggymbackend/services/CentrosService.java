@@ -1,7 +1,9 @@
 package com.uoc.ggymbackend.services;
 
 import com.uoc.ggymbackend.domain.CentroDeportivo;
+import com.uoc.ggymbackend.domain.Usuario;
 import com.uoc.ggymbackend.domain.vo.CentroDeportivoVO;
+import com.uoc.ggymbackend.domain.vo.UsuarioVO;
 import com.uoc.ggymbackend.repositories.CentroDeportivoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,18 @@ public class CentrosService {
     private CentroDeportivoRepository centroDeportivoRepository;
 
     @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     public CentroDeportivoVO crearCentro(CentroDeportivoVO centroDeportivoVO) {
         // Mapear a entidad
         CentroDeportivo centroDeportivo = modelMapper.map(centroDeportivoVO, CentroDeportivo.class);
+        // Obtener los datos del usuario
+        UsuarioVO usuarioVO = usuarioService.obtenerUsuario(centroDeportivoVO.getIdGestor());
+        Usuario usuario = modelMapper.map(usuarioVO, Usuario.class);
+        centroDeportivo.setGestor(usuario);
         // Guardar en la base de datos
         centroDeportivo = centroDeportivoRepository.save(centroDeportivo);
         // Mapear a VO y devolver

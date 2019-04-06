@@ -14,13 +14,13 @@ public class CredencialesUsuarioController {
     private CredencialesUsuarioService credencialesUsuarioService;
 
     @PostMapping(value = "/credenciales/crear", produces = "application/json", consumes = "application/json")
-    public CredencialesUsuarioVO registrarLogin(@RequestBody @Valid CredencialesUsuarioVO credencialesUsuarioVO) {
-        return credencialesUsuarioService.crearCredenciales(credencialesUsuarioVO);
+    public void registrarLogin(@RequestBody @Valid CredencialesUsuarioVO credencialesUsuarioVO) {
+        credencialesUsuarioService.crearCredenciales(credencialesUsuarioVO);
     }
 
     @PostMapping(value = "/credenciales/login", produces = "application/json")
-    public CredencialesUsuarioVO login(@RequestParam String email, @RequestParam String password) {
-        return credencialesUsuarioService.login(email, password);
+    public void login(@RequestParam String email, @RequestParam String password) {
+        credencialesUsuarioService.login(email, password);
     }
 
     @PutMapping(value = "/credenciales/actualizar", produces = "application/json", consumes = "application/json")

@@ -1,5 +1,6 @@
 package com.uoc.ggymbackend.services;
 
+import com.uoc.ggymbackend.domain.Abonado;
 import com.uoc.ggymbackend.domain.PagosAbonado;
 import com.uoc.ggymbackend.domain.vo.AbonadoVO;
 import com.uoc.ggymbackend.domain.vo.CentroDeportivoVO;
@@ -22,11 +23,18 @@ public class PagosService {
     private CentrosService centrosService;
 
     @Autowired
+    private AbonadosService abonadosService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     public PagosAbonadoVO crearPagos(PagosAbonadoVO pagosAbonadoVO) {
         // Mapear a entidad
         PagosAbonado pagosAbonado = modelMapper.map(pagosAbonadoVO, PagosAbonado.class);
+        // OBtener los detalles del abonado
+        AbonadoVO abonadoVO = abonadosService.obtenerAbonado(pagosAbonadoVO.getIdAbonado());
+        Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
+        pagosAbonado.setIdAbonado(abonado);
         // Guardar en la base de datos
         pagosAbonado = pagosRepository.save(pagosAbonado);
         // Mapear a VO y devolver
@@ -41,17 +49,19 @@ public class PagosService {
         // Leer el listado de abonados del centro
         List<AbonadoVO> abonadosVO = centroDeportivoVO.getAbonados();
         // por cada abonado, leer el listado de pagos
-        for (AbonadoVO abonado : abonadosVO) {
+        for (AbonadoVO abonadoVO : abonadosVO) {
+            // Mapear a abonado
+            Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
             // Obtener el listado de pagos
-            PagosAbonado pagos = pagosRepository.findByIdAbonadoAndMesAndAnio(abonado.getIdAbonado(), YearMonth.now().getMonthValue(),
+            PagosAbonado pagos = pagosRepository.findByIdAbonadoAndMesAndAnio(abonado, YearMonth.now().getMonthValue(),
                     Calendar.getInstance().get(Calendar.YEAR));
             // Si el pago no existe
             if (pagos == null) {
                 PagosAbonadoVO pago = new PagosAbonadoVO();
-                pago.setAbonado(abonado);
+                pago.setIdAbonado(abonado.getIdAbonado());
                 pago.setMes(YearMonth.now().getMonthValue());
                 pago.setAnio(Calendar.getInstance().get(Calendar.YEAR));
-                listadoPagosPendientes.add(new PagosAbonadoVO());
+                listadoPagosPendientes.add(pago);
             }
         }
         // Devolver el listaod
@@ -66,9 +76,11 @@ public class PagosService {
         // Leer el listado de abonados del centro
         List<AbonadoVO> abonadosVO = centroDeportivoVO.getAbonados();
         // por cada abonado, leer el listado de pagos
-        for (AbonadoVO abonado : abonadosVO) {
+        for (AbonadoVO abonadoVO : abonadosVO) {
+            // Mapear a abonado
+            Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
             // Obtener el listado de pagos
-            PagosAbonado pagos = pagosRepository.findByIdAbonadoAndMesAndAnio(abonado.getIdAbonado(), YearMonth.now().getMonthValue(),
+            PagosAbonado pagos = pagosRepository.findByIdAbonadoAndMesAndAnio(abonado, YearMonth.now().getMonthValue(),
                     Calendar.getInstance().get(Calendar.YEAR));
             // Si el pago no existe
             if (pagos != null) {

@@ -11,7 +11,7 @@ import java.util.List;
 public class Equipamiento {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEquipamiento;
 
     @NotBlank
@@ -19,9 +19,10 @@ public class Equipamiento {
 
     private String descripcionEquipamiento;
 
-    @ManyToOne
-    private Equipamiento equipamiento;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_centro")
+    private CentroDeportivo centroDeportivo;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "equipamiento", cascade = CascadeType.ALL)
     private List<Reserva> reservas;
 }

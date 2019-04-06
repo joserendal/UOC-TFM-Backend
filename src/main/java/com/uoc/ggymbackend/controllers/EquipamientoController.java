@@ -29,7 +29,7 @@ public class EquipamientoController {
         equipamientosService.actualizarEquipamiento(equipamientoVO);
     }
 
-    @PostMapping(value = "/equipamiento/reservar/", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/equipamiento/reservar", produces = "application/json", consumes = "application/json")
     public void reservarEquipamiento(@RequestBody @Valid ReservaVO reservaVO) {
         equipamientosService.reservarEquipamiento(reservaVO);
     }

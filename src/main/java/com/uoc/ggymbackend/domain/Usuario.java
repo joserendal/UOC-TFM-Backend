@@ -1,6 +1,6 @@
 package com.uoc.ggymbackend.domain;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
     @NotBlank

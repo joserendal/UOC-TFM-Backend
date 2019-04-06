@@ -2,18 +2,16 @@ package com.uoc.ggymbackend.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Data
 @Entity
 public class Abonado {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAbonado;
 
     @NotBlank
@@ -39,7 +37,11 @@ public class Abonado {
 
     private String rutaImagen;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_centro")
     private CentroDeportivo centroDeportivo;
+
+    @OneToMany(mappedBy = "abonado", cascade = CascadeType.ALL)
+    private List<Reserva> reservas;
 
 }

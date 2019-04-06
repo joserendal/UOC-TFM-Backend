@@ -1,6 +1,5 @@
 package com.uoc.ggymbackend.domain.vo;
 
-import com.uoc.ggymbackend.domain.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ public class CentroDeportivoVO {
 
     private Long idCentro;
 
-    private Usuario gestor;
+    private Long idGestor;
 
     private String nombreCentro;
 

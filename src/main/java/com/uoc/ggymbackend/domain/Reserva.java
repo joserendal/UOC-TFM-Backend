@@ -2,10 +2,7 @@ package com.uoc.ggymbackend.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,17 +10,18 @@ import java.time.LocalDateTime;
 public class Reserva {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReserva;
-
-    private Long idEquipamiento;
-
-    private Long idAbonado;
 
     private LocalDateTime reservaDesde;
 
     private LocalDateTime reservaHasta;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_abonado")
+    private Abonado abonado;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_equipamiento")
     private Equipamiento equipamiento;
 }

@@ -19,12 +19,12 @@ public class PagosController {
         return pagosService.crearPagos(pagosAbonadoVO);
     }
 
-    @GetMapping(value = "/pagos/pendientes/{id}", produces = "application/json")
+    @GetMapping(value = "/pagos/pendientes/{idCentroDeportivo}", produces = "application/json")
     public List<PagosAbonadoVO> obtenerListadoPagosPendientes(@PathVariable Long idCentroDeportivo) {
         return pagosService.obtenerListadoPagosPendientes(idCentroDeportivo);
     }
 
-    @GetMapping(value = "/pagos/abonados/{id}", produces = "application/json")
+    @GetMapping(value = "/pagos/abonados/{idCentroDeportivo}", produces = "application/json")
     public List<PagosAbonadoVO> obtenerListadoPagosAbonados(@PathVariable Long idCentroDeportivo) {
         return pagosService.obtenerListadoPagosAbonados(idCentroDeportivo);
     }

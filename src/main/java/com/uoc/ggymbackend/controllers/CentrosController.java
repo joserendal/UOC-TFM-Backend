@@ -24,12 +24,12 @@ public class CentrosController {
     }
 
     @PutMapping(value = "/centros/actualizar", produces = "application/json", consumes = "application/json")
-    public void actualizarUsuario(@RequestBody @Valid CentroDeportivoVO centroDeportivoVO) {
+    public void actualizarCentroDeportivo(@RequestBody @Valid CentroDeportivoVO centroDeportivoVO) {
         centrosService.actualizarCentro(centroDeportivoVO);
     }
 
     @DeleteMapping(value = "/centros/{id}", produces = "application/json", consumes = "application/json")
-    public void borrarUsuario(@PathVariable Long id) {
+    public void borrarCentroDeportivo(@PathVariable Long id) {
         centrosService.borrarCentro(id);
     }
 

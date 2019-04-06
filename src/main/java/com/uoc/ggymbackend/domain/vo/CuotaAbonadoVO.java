@@ -17,6 +17,7 @@ public class CuotaAbonadoVO {
 
     private Long idCuotaAbonado;
 
+    @NotNull
     private Long idAbonado;
 
     @NotNull

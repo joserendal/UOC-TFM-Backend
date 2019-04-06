@@ -28,7 +28,7 @@ public class CuotasService {
         // Mapear a entidad
         CuotaAbonado cuotaAbonado = modelMapper.map(cuotaAbonadoVO, CuotaAbonado.class);
         // Obtener los datos del abonado
-        AbonadoVO abonadoVO = abonadosService.obtenerAbonado(cuotaAbonado.getIdCuotaAbonado());
+        AbonadoVO abonadoVO = abonadosService.obtenerAbonado(cuotaAbonadoVO.getIdAbonado());
         Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
         cuotaAbonado.setAbonado(abonado);
         // Guardar en la base de datos

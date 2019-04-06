@@ -12,7 +12,7 @@ import java.util.List;
 public class CentroDeportivo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCentro;
 
     @OneToOne(cascade = CascadeType.REMOVE)
@@ -49,10 +49,10 @@ public class CentroDeportivo {
     @NotBlank
     private String emailContacto;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "centroDeportivo", cascade = CascadeType.ALL)
     private List<Abonado> abonados;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "centroDeportivo", cascade = CascadeType.ALL)
     private List<Equipamiento> equipamiento;
 
 }

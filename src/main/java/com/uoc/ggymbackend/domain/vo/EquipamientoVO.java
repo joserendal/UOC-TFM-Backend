@@ -1,12 +1,12 @@
 package com.uoc.ggymbackend.domain.vo;
 
-import com.uoc.ggymbackend.domain.Reserva;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @NoArgsConstructor
@@ -17,6 +17,7 @@ public class EquipamientoVO {
 
     private Long idEquipamiento;
 
+    @NotNull
     private Long idCentroDeportivo;
 
     @NotBlank
@@ -24,5 +25,5 @@ public class EquipamientoVO {
 
     private String descripcionEquipamiento;
 
-    private List<Reserva> reservas;
+    private List<ReservaVO> reservas;
 }

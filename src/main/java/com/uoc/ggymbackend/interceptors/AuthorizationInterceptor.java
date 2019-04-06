@@ -21,14 +21,14 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         String idUsuario = request.getHeader("idUsuario");
         // Si no existe la cabecera no dejaremos pasar
         if (idUsuario == null || idUsuario.isEmpty()) {
-            return false;
+            throw new IllegalAccessException("No se ha especificado un ID de Usuario");
         }
         // Comprobar que el usuario existe llamando al service.
         try {
             usuarioService.obtenerUsuario(Long.parseLong(idUsuario));
         } catch (NoSuchElementException e) {
             // El usuario no existe. No dejaremos pasar.
-            return false;
+            throw new IllegalAccessException("ID de Usuario no válido");
         }
 
         return true;

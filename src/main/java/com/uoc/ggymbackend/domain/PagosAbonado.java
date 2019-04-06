@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class PagosAbonado {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPagoAbonado;
 
     @OneToOne

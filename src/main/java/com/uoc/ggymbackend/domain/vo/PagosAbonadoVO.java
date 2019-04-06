@@ -17,7 +17,8 @@ public class PagosAbonadoVO {
 
     private Long idPagoAbonado;
 
-    private AbonadoVO abonado;
+    @NotNull
+    private Long idAbonado;
 
     @NotNull
     @Min(1)
