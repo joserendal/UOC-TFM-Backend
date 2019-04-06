@@ -1,7 +1,5 @@
 package com.uoc.ggymbackend.domain.vo;
 
-import com.uoc.ggymbackend.domain.Abonado;
-import com.uoc.ggymbackend.domain.Equipamiento;
 import com.uoc.ggymbackend.domain.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,7 +49,7 @@ public class CentroDeportivoVO {
     @NotBlank
     private String emailContacto;
 
-    private List<Abonado> abonados;
+    private List<AbonadoVO> abonados;
 
-    private List<Equipamiento> equipamiento;
+    private List<EquipamientoVO> equipamiento;
 }

@@ -20,8 +20,8 @@ public class AbonadosController {
     }
 
     @GetMapping(value = "/abonados", produces = "application/json")
-    public List<AbonadoVO> obtenerListadoAbonados() {
-        return abonadosService.obtenerListadoAbonados();
+    public List<AbonadoVO> obtenerListadoAbonados(@PathVariable Long idCentroDeportivo) {
+        return abonadosService.obtenerListadoAbonados(idCentroDeportivo);
     }
 
     @GetMapping(value = "/abonados/{id}", produces = "application/json")
