@@ -1,9 +1,7 @@
-package com.uoc.ggymbackend.services.mapper;
+package com.uoc.ggymbackend.services;
 
 import com.uoc.ggymbackend.domain.CredencialesUsuario;
-import com.uoc.ggymbackend.domain.Usuario;
 import com.uoc.ggymbackend.domain.vo.CredencialesUsuarioVO;
-import com.uoc.ggymbackend.domain.vo.UsuarioVO;
 import com.uoc.ggymbackend.repositories.CredencialesUsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

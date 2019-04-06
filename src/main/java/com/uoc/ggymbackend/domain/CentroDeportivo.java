@@ -52,4 +52,7 @@ public class CentroDeportivo {
     @OneToMany(cascade = CascadeType.REMOVE)
     private List<Abonado> abonados;
 
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Equipamiento> equipamiento;
+
 }

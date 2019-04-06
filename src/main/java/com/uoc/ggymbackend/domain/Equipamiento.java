@@ -1,12 +1,10 @@
 package com.uoc.ggymbackend.domain;
 
 import lombok.Data;
-import lombok.Generated;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,4 +18,7 @@ public class Equipamiento {
     private String nombreEquipamiento;
 
     private String descripcionEquipamiento;
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Reserva> reservas;
 }

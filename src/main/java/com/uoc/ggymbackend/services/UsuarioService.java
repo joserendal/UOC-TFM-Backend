@@ -1,4 +1,4 @@
-package com.uoc.ggymbackend.services.mapper;
+package com.uoc.ggymbackend.services;
 
 import com.uoc.ggymbackend.domain.Usuario;
 import com.uoc.ggymbackend.domain.vo.UsuarioVO;
