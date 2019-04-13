@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +13,6 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class CredencialesUsuarioVO {
 
-    @NotNull
     private Long idUsuario;
 
     @NotBlank

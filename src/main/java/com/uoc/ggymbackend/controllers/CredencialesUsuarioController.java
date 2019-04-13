@@ -3,7 +3,10 @@ package com.uoc.ggymbackend.controllers;
 import com.uoc.ggymbackend.domain.vo.CredencialesUsuarioVO;
 import com.uoc.ggymbackend.services.CredencialesUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -19,8 +22,8 @@ public class CredencialesUsuarioController {
     }
 
     @PostMapping(value = "/credenciales/login", produces = "application/json")
-    public void login(@RequestParam String email, @RequestParam String password) {
-        credencialesUsuarioService.login(email, password);
+    public void login(@RequestBody @Valid CredencialesUsuarioVO credencialesUsuarioVO) {
+        credencialesUsuarioService.login(credencialesUsuarioVO.getEmail(), credencialesUsuarioVO.getPassword());
     }
 
     @PutMapping(value = "/credenciales/actualizar", produces = "application/json", consumes = "application/json")
