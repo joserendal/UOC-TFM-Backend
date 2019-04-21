@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 
 @NoArgsConstructor
@@ -23,6 +25,9 @@ public class AbonadoVO implements Comparable {
 
     @NotBlank
     private String apellidos;
+
+    @NotNull
+    private LocalDate fechaNacimiento;
 
     private String direccion;
 
