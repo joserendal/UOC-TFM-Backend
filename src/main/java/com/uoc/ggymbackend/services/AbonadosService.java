@@ -76,7 +76,7 @@ public class AbonadosService {
         CentroDeportivoVO centro = centrosService.obtenerCentro(idCentroDeportivo);
         // Devolver el listado de abonados del centro
         List<AbonadoVO> abonados = centro.getAbonados();
-        // Ordenar
+        // Ordenar alfabéticamente
         Collections.sort(abonados);
         return abonados;
     }
