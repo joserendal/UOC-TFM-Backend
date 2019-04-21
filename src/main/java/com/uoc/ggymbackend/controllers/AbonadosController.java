@@ -34,7 +34,7 @@ public class AbonadosController {
         abonadosService.actualizarAbonado(abonadoVO);
     }
 
-    @DeleteMapping(value = "/abonados/{id}", produces = "application/json", consumes = "application/json")
+    @DeleteMapping(value = "/abonados/{id}", produces = "application/json")
     public void borrarAbonado(@PathVariable Long id) {
         abonadosService.borrarAbonado(id);
     }
