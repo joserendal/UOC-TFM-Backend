@@ -47,6 +47,19 @@ public class CentrosService {
         return modelMapper.map(optCentroDeportivo.get(), CentroDeportivoVO.class);
     }
 
+    public CentroDeportivoVO obtenerCentroUsuario(Long idUsuario) {
+        // Leer los datos del usuario
+        UsuarioVO usuarioVO = usuarioService.obtenerUsuario(idUsuario);
+        Usuario usuario = modelMapper.map(usuarioVO, Usuario.class);
+        // Obtener el centro deportivo solicitado
+        Optional<CentroDeportivo> optCentroDeportivo = centroDeportivoRepository.findByGestor(usuario);
+        if (!optCentroDeportivo.isPresent()) {
+            throw new NoSuchElementException("No se encuentra el centro deportivo solicitado");
+        }
+        // Mapearlo a VO y devolverlo
+        return modelMapper.map(optCentroDeportivo.get(), CentroDeportivoVO.class);
+    }
+
     public void actualizarCentro(CentroDeportivoVO centroDeportivoVO) {
         // Mapear a entidad
         CentroDeportivo centroDeportivo = modelMapper.map(centroDeportivoVO, CentroDeportivo.class);

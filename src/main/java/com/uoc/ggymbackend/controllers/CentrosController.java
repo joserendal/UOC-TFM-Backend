@@ -23,6 +23,11 @@ public class CentrosController {
         return centrosService.obtenerCentro(id);
     }
 
+    @GetMapping(value = "/centros/usuario/{idUsuario}", produces = "application/json")
+    public CentroDeportivoVO obtenerCentroDeportivoUsuario(@PathVariable Long idUsuario) {
+        return centrosService.obtenerCentroUsuario(idUsuario);
+    }
+
     @PutMapping(value = "/centros/actualizar", produces = "application/json", consumes = "application/json")
     public void actualizarCentroDeportivo(@RequestBody @Valid CentroDeportivoVO centroDeportivoVO) {
         centrosService.actualizarCentro(centroDeportivoVO);
