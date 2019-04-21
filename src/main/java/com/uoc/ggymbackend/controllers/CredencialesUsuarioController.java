@@ -22,8 +22,8 @@ public class CredencialesUsuarioController {
     }
 
     @PostMapping(value = "/credenciales/login", produces = "application/json")
-    public void login(@RequestBody @Valid CredencialesUsuarioVO credencialesUsuarioVO) {
-        credencialesUsuarioService.login(credencialesUsuarioVO.getEmail(), credencialesUsuarioVO.getPassword());
+    public CredencialesUsuarioVO login(@RequestBody @Valid CredencialesUsuarioVO credencialesUsuarioVO) {
+        return credencialesUsuarioService.login(credencialesUsuarioVO.getEmail(), credencialesUsuarioVO.getPassword());
     }
 
     @PutMapping(value = "/credenciales/actualizar", produces = "application/json", consumes = "application/json")
