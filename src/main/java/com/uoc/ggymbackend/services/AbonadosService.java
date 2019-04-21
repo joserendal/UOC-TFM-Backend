@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -76,7 +77,7 @@ public class AbonadosService {
         // Devolver el listado de abonados del centro
         List<AbonadoVO> abonados = centro.getAbonados();
         // Ordenar
-        abonados.stream().sorted((a1, a2) -> a1.getApellidos().concat(a1.getNombre()).compareTo(a2.getApellidos().concat(a2.getNombre())));
+        Collections.sort(abonados);
         return abonados;
     }
 }

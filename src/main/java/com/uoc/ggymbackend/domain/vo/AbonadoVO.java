@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @Getter
 @Setter
-public class AbonadoVO {
+public class AbonadoVO implements Comparable {
 
     private Long idAbonado;
 
@@ -40,4 +40,9 @@ public class AbonadoVO {
     private String numeroTelefono;
 
     private String rutaImagen;
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getApellidos().compareToIgnoreCase(((AbonadoVO) o).getApellidos());
+    }
 }
