@@ -32,9 +32,9 @@ public class PagosService {
         // Mapear a entidad
         PagosAbonado pagosAbonado = modelMapper.map(pagosAbonadoVO, PagosAbonado.class);
         // OBtener los detalles del abonado
-        AbonadoVO abonadoVO = abonadosService.obtenerAbonado(pagosAbonadoVO.getIdAbonado());
+        /*AbonadoVO abonadoVO = abonadosService.obtenerAbonado(pagosAbonadoVO.getIdAbonado());
         Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
-        pagosAbonado.setIdAbonado(abonado);
+        pagosAbonado.setIdAbonado(abonado);*/
         // Guardar en la base de datos
         pagosAbonado = pagosRepository.save(pagosAbonado);
         // Mapear a VO y devolver
@@ -58,7 +58,7 @@ public class PagosService {
             // Si el pago no existe
             if (pagos == null) {
                 PagosAbonadoVO pago = new PagosAbonadoVO();
-                pago.setIdAbonado(abonado.getIdAbonado());
+                pago.setIdAbonado(abonadoVO);
                 pago.setMes(YearMonth.now().getMonthValue());
                 pago.setAnio(Calendar.getInstance().get(Calendar.YEAR));
                 listadoPagosPendientes.add(pago);
