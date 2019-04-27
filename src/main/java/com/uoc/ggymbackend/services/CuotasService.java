@@ -37,9 +37,12 @@ public class CuotasService {
         return modelMapper.map(cuotaAbonado, CuotaAbonadoVO.class);
     }
 
-    public CuotaAbonadoVO obtenerCuota(Long idCuota) {
+    public CuotaAbonadoVO obtenerCuota(Long idAbonado) {
+        // Obtener los datos del abonado
+        AbonadoVO abonadoVO = abonadosService.obtenerAbonado(idAbonado);
+        Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
         // Obtener la cuota del abonado
-        Optional<CuotaAbonado> optionalCuotaAbonado = cuotaRepository.findById(idCuota);
+        Optional<CuotaAbonado> optionalCuotaAbonado = cuotaRepository.findByAbonado(abonado);
         if (!optionalCuotaAbonado.isPresent()) {
             throw new NoSuchElementException("No se encuentra la cuota del abonado");
         }
