@@ -41,7 +41,7 @@ public class PagosService {
         return modelMapper.map(pagosAbonado, PagosAbonadoVO.class);
     }
 
-    public List<PagosAbonadoVO> obtenerListadoPagosPendientes(Long idCentroDeportivo) {
+    public List<PagosAbonadoVO> obtenerListadoPagosPendientes(Long idCentroDeportivo, int mes, int anio) {
         // Listado de pagos a devolver
         List<PagosAbonadoVO> listadoPagosPendientes = new ArrayList<>();
         // Obtener el centro deportivo por ID
@@ -53,8 +53,7 @@ public class PagosService {
             // Mapear a abonado
             Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
             // Obtener el listado de pagos
-            PagosAbonado pagos = pagosRepository.findByIdAbonadoAndMesAndAnio(abonado, YearMonth.now().getMonthValue(),
-                    Calendar.getInstance().get(Calendar.YEAR));
+            PagosAbonado pagos = pagosRepository.findByIdAbonadoAndMesAndAnio(abonado, mes, anio);
             // Si el pago no existe
             if (pagos == null) {
                 PagosAbonadoVO pago = new PagosAbonadoVO();
@@ -68,7 +67,7 @@ public class PagosService {
         return listadoPagosPendientes;
     }
 
-    public List<PagosAbonadoVO> obtenerListadoPagosAbonados(Long idCentroDeportivo) {
+    public List<PagosAbonadoVO> obtenerListadoPagosAbonados(Long idCentroDeportivo, int mes, int anio) {
         // Listado de pagos a devolver
         List<PagosAbonadoVO> listadoPagosPendientes = new ArrayList<>();
         // Obtener el centro deportivo por ID
@@ -80,8 +79,7 @@ public class PagosService {
             // Mapear a abonado
             Abonado abonado = modelMapper.map(abonadoVO, Abonado.class);
             // Obtener el listado de pagos
-            PagosAbonado pagos = pagosRepository.findByIdAbonadoAndMesAndAnio(abonado, YearMonth.now().getMonthValue(),
-                    Calendar.getInstance().get(Calendar.YEAR));
+            PagosAbonado pagos = pagosRepository.findByIdAbonadoAndMesAndAnio(abonado, mes, anio);
             // Si el pago no existe
             if (pagos != null) {
                 listadoPagosPendientes.add(modelMapper.map(pagos, PagosAbonadoVO.class));
