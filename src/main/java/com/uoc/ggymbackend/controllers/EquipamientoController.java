@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class EquipamientoController {
@@ -22,6 +23,11 @@ public class EquipamientoController {
     @GetMapping(value = "/equipamiento/{id}", produces = "application/json")
     public EquipamientoVO obtenerEquipamiento(@PathVariable Long id) {
         return equipamientosService.obtenerEquipamiento(id);
+    }
+
+    @GetMapping(value = "/equipamiento/centro/{idCentroDeportivo}", produces = "application/json")
+    public List<EquipamientoVO> obtenerEquipamientoCentroDeportivo(@PathVariable Long idCentroDeportivo) {
+        return equipamientosService.obtenerEquipamientosCentroDeportivo(idCentroDeportivo);
     }
 
     @PutMapping(value = "/equipamiento/actualizar", produces = "application/json", consumes = "application/json")
