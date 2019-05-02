@@ -12,10 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EquipamientosService {
@@ -62,6 +59,8 @@ public class EquipamientosService {
             EquipamientoVO equipVO = modelMapper.map(equipamientoTemp, EquipamientoVO.class);
             equipamientoVO.add(equipVO);
         }
+        // Ordenar la lista de equipamiento por nombre
+        Collections.sort(equipamientoVO);
         // Mapear a VO y devolverlo
         return equipamientoVO;
     }

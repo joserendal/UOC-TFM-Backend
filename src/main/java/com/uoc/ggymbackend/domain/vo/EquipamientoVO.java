@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class EquipamientoVO {
+public class EquipamientoVO implements Comparable {
 
     private Long idEquipamiento;
 
@@ -26,4 +26,9 @@ public class EquipamientoVO {
     private String descripcionEquipamiento;
 
     private List<ReservaVO> reservas;
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getNombreEquipamiento().compareToIgnoreCase(((EquipamientoVO) o).getNombreEquipamiento());
+    }
 }
