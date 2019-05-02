@@ -1,7 +1,9 @@
 package com.uoc.ggymbackend.services;
 
+import com.uoc.ggymbackend.domain.CentroDeportivo;
 import com.uoc.ggymbackend.domain.Equipamiento;
 import com.uoc.ggymbackend.domain.Reserva;
+import com.uoc.ggymbackend.domain.vo.CentroDeportivoVO;
 import com.uoc.ggymbackend.domain.vo.EquipamientoVO;
 import com.uoc.ggymbackend.domain.vo.ReservaVO;
 import com.uoc.ggymbackend.repositories.EquipamientoRepository;
@@ -10,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -21,6 +25,9 @@ public class EquipamientosService {
 
     @Autowired
     private ReservaRepository reservaRepository;
+
+    @Autowired
+    private CentrosService centrosService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -42,6 +49,21 @@ public class EquipamientosService {
         }
         // Mapear a VO y devolverlo
         return modelMapper.map(optionalEquipamiento.get(), EquipamientoVO.class);
+    }
+
+    public List<EquipamientoVO> obtenerEquipamientosCentroDeportivo(Long idCentroDeportivo) {
+        // Obtener centro deportivo por ID
+        CentroDeportivoVO centroDeportivoVO = centrosService.obtenerCentro(idCentroDeportivo);
+        CentroDeportivo centroDeportivo = modelMapper.map(centroDeportivoVO, CentroDeportivo.class);
+        // Obtener el equipamiento del centro
+        List<Equipamiento> equipamiento = equipamientoRepository.findByCentroDeportivo(centroDeportivo);
+        List<EquipamientoVO> equipamientoVO = new ArrayList<>();
+        for (Equipamiento equipamientoTemp : equipamiento) {
+            EquipamientoVO equipVO = modelMapper.map(equipamientoTemp, EquipamientoVO.class);
+            equipamientoVO.add(equipVO);
+        }
+        // Mapear a VO y devolverlo
+        return equipamientoVO;
     }
 
     public void actualizarEquipamiento(EquipamientoVO equipamientoVO) {
