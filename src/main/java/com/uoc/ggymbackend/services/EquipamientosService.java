@@ -12,7 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipamientosService {
@@ -56,7 +58,17 @@ public class EquipamientosService {
         List<Equipamiento> equipamiento = equipamientoRepository.findByCentroDeportivo(centroDeportivo);
         List<EquipamientoVO> equipamientoVO = new ArrayList<>();
         for (Equipamiento equipamientoTemp : equipamiento) {
+            // Mapear a VO
             EquipamientoVO equipVO = modelMapper.map(equipamientoTemp, EquipamientoVO.class);
+            // Listado de reservas
+            List<ReservaVO> reservas = equipVO.getReservas()
+                    .stream()
+                    .filter(reservaVO -> reservaVO.getReservaDesde().getDayOfMonth() == LocalDateTime.now().getDayOfMonth() &&
+                            reservaVO.getReservaDesde().getMonthValue() == LocalDateTime.now().getMonthValue() &&
+                            reservaVO.getReservaDesde().getYear() == LocalDateTime.now().getYear())
+                    .collect(Collectors.toList());
+            // Añadir a la colección
+            equipVO.setReservas(reservas);
             equipamientoVO.add(equipVO);
         }
         // Ordenar la lista de equipamiento por nombre
