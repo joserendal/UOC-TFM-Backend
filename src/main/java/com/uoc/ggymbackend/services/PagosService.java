@@ -10,8 +10,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.YearMonth;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class PagosService {
@@ -58,8 +60,8 @@ public class PagosService {
             if (pagos == null) {
                 PagosAbonadoVO pago = new PagosAbonadoVO();
                 pago.setIdAbonado(abonadoVO);
-                pago.setMes(YearMonth.now().getMonthValue());
-                pago.setAnio(Calendar.getInstance().get(Calendar.YEAR));
+                pago.setMes(mes);
+                pago.setAnio(anio);
                 listadoPagosPendientes.add(pago);
             }
         }
